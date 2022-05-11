@@ -45,8 +45,8 @@ param:
   test:
     periodos: [  ]
     rango:
-      desde:  201801
-      hasta:  202112
+      desde:  201801 # sirve para hacer cross validation, demora una enternidad
+      hasta:  202112 # sirve para hacer cross validation, demora una enternidad
     excluir: [  ]
     undersampling: [  ]
 
@@ -54,8 +54,8 @@ param:
   train_final:
     periodos: [ ]
     rango:
-      desde:  202001
-      hasta:  202011
+      desde:  202001 # sirve para hacer cross validation, demora una enternidad
+      hasta:  202011 # sirve para hacer cross validation, demora una enternidad
     excluir: [ 202006 ]
     undersampling: [  ]
     
