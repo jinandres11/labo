@@ -1,0 +1,83 @@
+googlecloud:
+  RAM:   256
+  vCPU:    8
+  disk:  300
+
+
+experiment:
+  script: "src/completo/z921_TS_generico.r"
+  restart: FALSE
+  name: "exp"
+  requires: [ "FE9510" ]
+
+
+param:
+  semilla: 104383
+
+  #donde aplico el modelo final, los datos sin clase
+  future:
+    periodos: [ 202101 ]
+    rango:
+      desde:
+      hasta:
+    excluir: [ ]
+    undersampling: []
+
+  #donde entreno
+  train:
+    periodos: [ ] # se puede utilizar este rango y eliminar el rango debajo
+    rango:
+      desde:  201801
+      hasta:  202112
+    excluir: [ 202006 ]
+    undersampling: [ {clase: "CONTINUA", prob: 0.1 } ] # 
+
+  #donde valido
+  validate:
+    periodos: [  ]
+    rango:
+      desde:  201801
+      hasta:  202112 
+    excluir: [ ]
+    undersampling: [  ]
+
+  #donde testeo
+  test:
+    periodos: [  ]
+    rango:
+      desde:  201801 # sirve para hacer cross validation, demora una enternidad
+      hasta:  202112 # sirve para hacer cross validation, demora una enternidad
+    excluir: [  ]
+    undersampling: [  ]
+
+  #donde entreno el modelo final
+  train_final:
+    periodos: [ ]
+    rango:
+      desde:  202001 # sirve para hacer cross validation, demora una enternidad
+      hasta:  202011 # sirve para hacer cross validation, demora una enternidad
+    excluir: [ 202006 ]
+    undersampling: [  ]
+    
+
+  files:
+    input:
+      dentrada: [ "dataset" ]
+    output:
+      future_data:   "TS_future_data.csv.gz"
+      train_strategy: "TS_train_strategy.csv.gz"
+      train_final:   "TS_train_final.csv.gz"
+      control:       "control.txt"
+
+  const:
+    secciones: [ "future", "train", "validate", "test", "train_final"  ]
+    clase: "clase_ternaria"
+    periodo: "foto_mes"
+    futuro: [ 202101 ]
+    campos_sort:  [ "numero_de_cliente", "foto_mes" ]   #por donde hago el sort inicial
+
+
+environment:
+  repo_dir: "~/labo/"
+  exp_dir:  "~/buckets/b1/exp/"
+  catalog:  "catalogo.txt"
