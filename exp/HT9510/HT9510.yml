@@ -34,8 +34,8 @@ param:
     num_leaves:         [ 16, 1024, "integer" ]
     min_data_in_leaf:   [  0, 8000, "integer" ]
 
-    lambda_l1:  0
-    lambda_l2:  0
+    lambda_l1:  [ 0, 100]
+    lambda_l2:  [ 0, 100]
     min_gain_to_split: 0
     bagging_fraction: 1.0
 
