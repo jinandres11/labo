@@ -20,7 +20,7 @@ param:
   clase_test_POS:     [ "BAJA+2" ]
   KA_start:  9000
   KA_end:   13000
-  KA_step:    500
+  KA_step:    250
 
 
   files:
